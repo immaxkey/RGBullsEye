@@ -42,7 +42,7 @@ class TimeCounter: ObservableObject {
     }
     
     init() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
     }
     
     func killTimer() {
