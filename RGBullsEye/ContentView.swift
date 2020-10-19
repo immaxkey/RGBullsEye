@@ -53,15 +53,16 @@ class TimeCounter: ObservableObject {
 }
 
 struct ContentView: View {
-//    let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
-    @ObservedObject var timer = TimeCounter()
-    let rTarget = Double.random(in: 0..<1)
-    let gTarget = Double.random(in: 0..<1)
-    let bTarget = Double.random(in: 0..<1)
-//    @State private var counter = 1
-    @State var rGuess: Double
-    @State var gGuess: Double
-    @State var bGuess: Double
+    let timer = Timer.publish(every: 1, on: .main , in: .common).autoconnect()
+//    @ObservedObject var timer = TimeCounter()
+    @State private var rTarget = 0.0
+    @State private var gTarget = 0.0
+    @State private var bTarget = 0.0
+    @State private var counter = 0
+    @State private var stopCount = false
+    @State private var rGuess = 0.5
+    @State private var gGuess = 0.5
+    @State private var bGuess = 0.5
     
     @State var showAlert = false
 
@@ -69,8 +70,8 @@ struct ContentView: View {
         let rDiff = rGuess - rTarget
         let gDiff = gGuess - gTarget
         let bDiff = bGuess - bTarget
-        let diff = sqrt(rDiff * rDiff + gDiff * gDiff + bDiff * bDiff)
-        return Int((1.0 - diff) * 100.0 + 0.5)
+        let diff = sqrt((rDiff * rDiff + gDiff * gDiff + bDiff * bDiff) / 3.0)
+        return lround((1.0 - diff) * 100.0)
     }
 
     var body: some View {
@@ -89,16 +90,15 @@ struct ContentView: View {
                     VStack {
                         ZStack {
                             Color(red: rGuess, green: gGuess, blue: bGuess)
-                            Text("\(timer.counter)")
-                                //                        .foregroundColor(.black)
+                            Text("\(counter)")
                                 .padding(5)
-                                //                        .background(Color.white.clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/))
                                 .background(Color.white)
                                 .mask(Circle())
                         }
-//                        .onReceive(timer.timer!, perform: { _ in
-//                            counter += 1
-//                        })
+                        .onReceive(timer, perform: { _ in
+                            guard !stopCount else { return }
+                            counter += 1
+                        })
                         
                         Text("R: \(Int(rGuess * 255.0))"
                                 + "  G: \(Int(gGuess * 255.0))"
@@ -107,13 +107,18 @@ struct ContentView: View {
                 }
                 Button(action: {
                     self.showAlert = true
-                    self.timer.killTimer()
-                    
+                    self.stopCount = true
+//                    self.timer.killTimer()
                 }) {
                     Text("Hit Me!")
                 }
                 .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Your Score"), message: Text(String(computeScore())))
+//                    Alert(title: Text("Your Score"), message: Text(String(computeScore())))
+                    Alert(title: Text("Your Score"), message: Text(String(computeScore())), dismissButton: .default(Text("OK"), action: {
+                        self.startNewRound()
+                        print("\(self.showAlert)")
+                        
+                    }))
                 }
                 .padding()
                 
@@ -124,12 +129,30 @@ struct ContentView: View {
                 }
                 .padding(.horizontal)
             }
+            .onAppear{
+                self.targetCalculation()
+            }
             //        .background(Color(.systemBackground))
             //        .font(Font.subheadline.lowercaseSmallCaps().weight(.light))
         }
         //prevent split view in landscape on iPhone 11 Pro Maz
         .navigationViewStyle(StackNavigationViewStyle())
         //    .colorScheme(.dark)
+    }
+    
+    private func targetCalculation() {
+        rTarget = Double.random(in: 0..<1)
+        gTarget = Double.random(in: 0..<1)
+        bTarget = Double.random(in: 0..<1)
+    }
+    
+    private func startNewRound() {
+        targetCalculation()
+        counter = 0
+        stopCount = false
+        rGuess = 0.5
+        gGuess = 0.5
+        bGuess = 0.5
     }
 }
 
@@ -152,7 +175,7 @@ struct ColorSlider: View {
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-        ContentView(rGuess: 0.5, gGuess: 0.5, bGuess: 0.5)
+        ContentView()
     }
         
 //      .previewLayout(.fixed(width: 568, height: 320))

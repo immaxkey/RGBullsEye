@@ -42,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     if let windowScene = scene as? UIWindowScene {
       let window = UIWindow(windowScene: windowScene)
       window.rootViewController = UIHostingController(rootView:
-        ContentView(rGuess: 0.5, gGuess: 0.5, bGuess: 0.5))
+        ContentView())
       self.window = window
       window.makeKeyAndVisible()
     }
