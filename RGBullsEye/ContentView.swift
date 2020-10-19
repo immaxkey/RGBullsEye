@@ -53,12 +53,10 @@ class TimeCounter: ObservableObject {
 }
 
 struct ContentView: View {
-//    let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     @ObservedObject var timer = TimeCounter()
     let rTarget = Double.random(in: 0..<1)
     let gTarget = Double.random(in: 0..<1)
     let bTarget = Double.random(in: 0..<1)
-//    @State private var counter = 1
     @State var rGuess: Double
     @State var gGuess: Double
     @State var bGuess: Double
@@ -69,8 +67,8 @@ struct ContentView: View {
         let rDiff = rGuess - rTarget
         let gDiff = gGuess - gTarget
         let bDiff = bGuess - bTarget
-        let diff = sqrt(rDiff * rDiff + gDiff * gDiff + bDiff * bDiff)
-        return Int((1.0 - diff) * 100.0 + 0.5)
+        let diff = sqrt((rDiff * rDiff + gDiff * gDiff + bDiff * bDiff) / 3.0)
+        return lround((1.0 - diff) * 100.0)
     }
 
     var body: some View {
@@ -90,15 +88,11 @@ struct ContentView: View {
                         ZStack {
                             Color(red: rGuess, green: gGuess, blue: bGuess)
                             Text("\(timer.counter)")
-                                //                        .foregroundColor(.black)
                                 .padding(5)
                                 //                        .background(Color.white.clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/))
                                 .background(Color.white)
                                 .mask(Circle())
                         }
-//                        .onReceive(timer.timer!, perform: { _ in
-//                            counter += 1
-//                        })
                         
                         Text("R: \(Int(rGuess * 255.0))"
                                 + "  G: \(Int(gGuess * 255.0))"
