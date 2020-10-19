@@ -13,6 +13,10 @@
 		407CAC6D22E69177009CE254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407CAC6C22E69177009CE254 /* Assets.xcassets */; };
 		407CAC7022E69177009CE254 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407CAC6F22E69177009CE254 /* Preview Assets.xcassets */; };
 		407CAC7322E69177009CE254 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 407CAC7122E69177009CE254 /* LaunchScreen.storyboard */; };
+		508D47AE253D383E00008921 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508D47AD253D383E00008921 /* Game.swift */; };
+		508D47B3253D489A00008921 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508D47B2253D489A00008921 /* Color.swift */; };
+		508D47B9253D491D00008921 /* RgbText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508D47B8253D491D00008921 /* RgbText.swift */; };
+		508D47BD253D4A1500008921 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508D47BC253D4A1500008921 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		407CAC6F22E69177009CE254 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		407CAC7222E69177009CE254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		407CAC7422E69177009CE254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		508D47AD253D383E00008921 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		508D47B2253D489A00008921 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		508D47B8253D491D00008921 /* RgbText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbText.swift; sourceTree = "<group>"; };
+		508D47BC253D4A1500008921 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +64,11 @@
 		407CAC6522E69175009CE254 /* RGBullsEye */ = {
 			isa = PBXGroup;
 			children = (
+				508D47B6253D48D000008921 /* Model */,
+				508D47B1253D487C00008921 /* Extensions */,
 				407CAC6622E69175009CE254 /* AppDelegate.swift */,
 				407CAC6822E69175009CE254 /* SceneDelegate.swift */,
-				407CAC6A22E69175009CE254 /* ContentView.swift */,
+				508D47B7253D48ED00008921 /* Views */,
 				407CAC6C22E69177009CE254 /* Assets.xcassets */,
 				407CAC7122E69177009CE254 /* LaunchScreen.storyboard */,
 				407CAC7422E69177009CE254 /* Info.plist */,
@@ -73,6 +83,32 @@
 				407CAC6F22E69177009CE254 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		508D47B1253D487C00008921 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				508D47B2253D489A00008921 /* Color.swift */,
+				508D47BC253D4A1500008921 /* View.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		508D47B6253D48D000008921 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				508D47AD253D383E00008921 /* Game.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		508D47B7253D48ED00008921 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				407CAC6A22E69175009CE254 /* ContentView.swift */,
+				508D47B8253D491D00008921 /* RgbText.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +182,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508D47B9253D491D00008921 /* RgbText.swift in Sources */,
 				407CAC6722E69175009CE254 /* AppDelegate.swift in Sources */,
 				407CAC6922E69175009CE254 /* SceneDelegate.swift in Sources */,
 				407CAC6B22E69175009CE254 /* ContentView.swift in Sources */,
+				508D47B3253D489A00008921 /* Color.swift in Sources */,
+				508D47BD253D4A1500008921 /* View.swift in Sources */,
+				508D47AE253D383E00008921 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
