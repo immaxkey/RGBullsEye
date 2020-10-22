@@ -50,16 +50,15 @@ struct ContentView: View {
                     }
                     
                     VStack {
-                        ZStack {
-                            Color(rgb: game.guess)
-                            
-                            Text("\(counter)")
-                                .counterView()
-                        }
-                        .onReceive(timer, perform: { _ in
-                            guard !stopCount else { return }
-                            counter += 1
-                        })
+                        Color(rgb: game.guess)
+                            .overlay(
+                                Text("\(counter)")
+                                    .counterView()
+                            )
+                            .onReceive(timer, perform: { _ in
+                                guard !stopCount else { return }
+                                counter += 1
+                            })
                         
                         RgbText(game.guess)
                     }
