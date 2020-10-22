@@ -93,23 +93,6 @@ struct ContentView: View {
     }
 }
 
-struct ColorSlider: View {
-  @Binding var value: Double
-  var textColor: Color
-    
-  var body: some View {
-    HStack {
-      Text("0")
-        .foregroundColor(textColor)
-      Slider(value: $value)
-        .background(textColor)
-        .cornerRadius(10)
-      Text("255")
-        .foregroundColor(textColor)
-    }
-  }
-}
-
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     Group {
