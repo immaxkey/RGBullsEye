@@ -80,9 +80,9 @@ struct ContentView: View {
                 .padding()
                 
                 VStack {
-                    ColorSlider(value: $game.guess.red, textColor: .red)
-                    ColorSlider(value: $game.guess.green, textColor: .green)
-                    ColorSlider(value: $game.guess.blue, textColor: .blue)
+                    ColorSlider(value: $game.guess.red, textColor: .red, opacity: game.bkOpacity(for: .red))
+                    ColorSlider(value: $game.guess.green, textColor: .green, opacity: game.bkOpacity(for: .green))
+                    ColorSlider(value: $game.guess.blue, textColor: .blue, opacity: game.bkOpacity(for: .blue))
                 }
                 .padding(.horizontal)
             }

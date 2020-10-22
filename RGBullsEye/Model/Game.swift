@@ -8,6 +8,11 @@
 
 import SwiftUI
 
+enum SliderColor {
+    case red, green, blue
+}
+
+
 enum RgbOption {
     case random, initialGuess
 }
@@ -52,4 +57,22 @@ class Game: ObservableObject {
         let diff = sqrt((rDiff * rDiff + gDiff * gDiff + bDiff * bDiff) / 3.0)
         return lround((1.0 - diff) * 100.0)
     }
+    
+    func bkOpacity(for sliderColor: SliderColor) -> Double {
+        switch sliderColor {
+        case .blue:
+            return opacityCulc(value1: guess.blue, value2: target.blue)
+        case .green:
+            return opacityCulc(value1: guess.green, value2: target.green)
+        case .red:
+            return opacityCulc(value1: guess.red, value2: target.red)
+        
+        }
+    }
+    
+    private func opacityCulc(value1: Double, value2: Double) -> Double {
+        0.3 + abs(value1 - value2) / 0.7
+    }
+    
+    
 }

@@ -11,22 +11,24 @@ import SwiftUI
 struct ColorSlider: View {
     @Binding var value: Double
     var textColor: Color
+    var opacity: Double
       
     var body: some View {
       HStack {
         Text("0")
-          .foregroundColor(textColor)
+            .foregroundColor(textColor)
         Slider(value: $value)
-          .background(textColor)
-          .cornerRadius(10)
+            .background(textColor)
+            .opacity(opacity)
+            .cornerRadius(10)
         Text("255")
-          .foregroundColor(textColor)
+            .foregroundColor(textColor)
       }
     }
 }
 
 struct ColorSlider_Previews: PreviewProvider {
     static var previews: some View {
-        ColorSlider(value: .constant(0.5), textColor: .red)
+        ColorSlider(value: .constant(0.5), textColor: .red, opacity: 0.6)
     }
 }
